@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Quinel Math Jobs\\Math Jobs\\Tools\\VisualDebugger\\VisualDebugger.csproj": {}
+    "C:\\Users\\alessandro.benedetti\\Documents\\GitHub\\SVD-executable\\VisualDebugger.csproj": {}
   },
   "projects": {
-    "C:\\Quinel Math Jobs\\Math Jobs\\Tools\\VisualDebugger\\VisualDebugger.csproj": {
+    "C:\\Users\\alessandro.benedetti\\Documents\\GitHub\\SVD-executable\\VisualDebugger.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Quinel Math Jobs\\Math Jobs\\Tools\\VisualDebugger\\VisualDebugger.csproj",
+        "projectUniqueName": "C:\\Users\\alessandro.benedetti\\Documents\\GitHub\\SVD-executable\\VisualDebugger.csproj",
         "projectName": "VisualDebugger",
-        "projectPath": "C:\\Quinel Math Jobs\\Math Jobs\\Tools\\VisualDebugger\\VisualDebugger.csproj",
+        "projectPath": "C:\\Users\\alessandro.benedetti\\Documents\\GitHub\\SVD-executable\\VisualDebugger.csproj",
         "packagesPath": "C:\\Users\\alessandro.benedetti\\.nuget\\packages\\",
-        "outputPath": "C:\\Quinel Math Jobs\\Math Jobs\\Tools\\VisualDebugger\\obj\\",
+        "outputPath": "C:\\Users\\alessandro.benedetti\\Documents\\GitHub\\SVD-executable\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

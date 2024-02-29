@@ -1,0 +1,145 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1000"
+        MinHeight="580" MinWidth="800">
+    <Grid Name="LayoutRoot" Background="#FF22242B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="Col1" Width="*" />
+            <ColumnDefinition Name="Col2" Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" Grid.Column="0" x:Name="tabControl1" BorderBrush="#357965" HorizontalAlignment="Stretch" Margin="5,5,0,0" VerticalAlignment="Stretch" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="White" SelectionChanged="tabControl1_SelectionChanged" PreviewMouseWheel="scalewindow">
+            <TabControl.Template>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- ScrollViewer for TabPanel -->
+                        <ScrollViewer x:Name="TabScrollViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Grid.Row="0" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                            <TabPanel x:Name="HeaderPanel" Panel.ZIndex="1" IsItemsHost="True" KeyboardNavigation.TabIndex="1" Grid.Column="0" />
+                        </ScrollViewer>
+
+                        <!-- Content area -->
+                        <Border x:Name="Border" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border Name="Border" Background="#FF22242B" Margin="2,2,2,0" BorderBrush="#357965" BorderThickness="2,2,2,2" CornerRadius="5,5,0,0">
+                                        <ContentPresenter x:Name="ContentSite" Margin="5,2,5,2" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#357965" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                                        <Setter TargetName="Border" Property="Background" Value="#1b4332" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                                        <Setter TargetName="Border" Property="Background" Value="#002029" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontFamily" Value="DokChampa" />
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
+                </Style>
+                <Style x:Key="tabGrids">
+                    <Setter Property="Grid.Background" Value="#FFE5E5E5" />
+                    <Setter Property="Grid.Margin" Value="6,10,10,10" />
+                </Style>
+            </TabControl.Resources>
+
+        </TabControl>
+        <ListBox Grid.Row="0" Grid.Column="1" x:Name="PaylineList" ItemsSource="{Binding WinningList}"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,0,0" 
+                 d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" Foreground="White"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 SelectionChanged="PaylineList_SelectionChanged" PreviewMouseWheel="MainWindow_PreviewMouseWheel">
+        </ListBox>
+        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DataGrid1" ColumnWidth="1*" ItemsSource="{Binding DataList}" RowHeaderWidth="0" Grid.RowSpan="2" Margin="5, 5, 0,0" VerticalAlignment="Stretch" ClipToBounds="True" PreviewMouseWheel="MainWindow_PreviewMouseWheel">
+            <DataGrid.Background>
+                <!--sets the color of the background-->
+                <SolidColorBrush Color="#22242b"/>
+            </DataGrid.Background>
+            <DataGrid.ColumnHeaderStyle>
+                <!-- sets the header row colors -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#22242b"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- Set your desired background color -->
+                    <!-- Add more setters as needed -->
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Foreground="#fb5607" FontSize="25" Grid.Column="0" Content="- Sticky" HorizontalAlignment="Left" Height="40" Grid.Row="0" VerticalAlignment="Top" Width="190" Margin="5,0,0,0" />
+            <Label Foreground="#06D6A0" FontSize="25" Grid.Column="0" Content="- Mask" HorizontalAlignment="Left" Height="40" Grid.Row="1" VerticalAlignment="Top" Width="190" Margin="5,0,0,0"/>
+            <Button Grid.Column="0" Grid.Row="2" Background="#22242b" FontWeight="ExtraBold" FontSize="35" HorizontalContentAlignment="Center" Click="Button_Click">
+                <TextBlock Name="TextBlock" Text="➜" TextAlignment="Center" Width="60"  />
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#06D6A0" TargetName="Border" />
+                                            <Setter Property="Foreground" Value="Red" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Window>

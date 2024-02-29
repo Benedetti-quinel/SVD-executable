@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
 
-namespace VisualDebugger
+namespace WpfApp1
 {
-
-    public class Winning
+    internal class Winning
     {
         public uint id;
         public String type;
@@ -27,14 +30,32 @@ namespace VisualDebugger
 
     }
 
-    public class TabInfo
+    internal class TabInfo
     {
         public String Name;
+        public String Reelset;
+        public List<String> Stops = new List<string>();
         public List<List<String>> Slot = new List<List<String>>();
         public List<List<String>> Sticky = new List<List<String>>();
         public List<List<String>> Mask = new List<List<String>>();
         public List<List<String>> WildMask = new List<List<String>>();
         public List<Winning> Winnings = new List<Winning>();
+
     }
 
+    public class Slot
+    {
+        public List<List<Label>> cells = new List<List<Label>>();
+    }
+
+    public class DataTable
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public DataTable(string Name, string Value) {
+            this.Name = Name;
+            this.Value = Value;
+        }
+    }
 }

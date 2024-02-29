@@ -45,10 +45,18 @@ namespace WpfApp1
         public MainWindow()
         {
             DataContext = this;
-            InitializeComponent();
-
-            SlotStateParser ssp = new SlotStateParser("C:\\Users\\alessandro.benedetti\\Desktop\\XMLFile2.xml");
+            var args = Environment.GetCommandLineArgs();
+            SlotStateParser ssp;
+            if (args != null && args.Length > 1)
+            {
+                ssp = new SlotStateParser(args[1]);
+            }
+            else
+            {
+                ssp = new SlotStateParser("C:\\Users\\alessandro.benedetti\\Desktop\\XMLFile2.xml");
+            }
             tabs = ssp.Parse();
+            InitializeComponent();
 
 
             InitializeSlots();
